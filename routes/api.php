@@ -1,19 +1,29 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\BookController;
+use App\Http\Controllers\Api\V1\AuthorController;
+use App\Http\Controllers\Api\V1\TagController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', function() {
+    return [
+        'success' => true,
+        'message' => 'Welcome to BookStore!',
+    ];
 });
+
+/* Books */
+Route::get('/books', [BookController::class, 'all']);
+Route::get('/getBookById', [BookController::class, 'getBookById']);
+Route::post('/create', [BookController::class, 'create']);
+Route::post('/update', [BookController::class, 'update']);
+
+/* Authors */
+Route::get('/authors', [AuthorController::class, 'all']);
+Route::get('/getAuthorById', [AuthorController::class, 'getAuthorById']);
+Route::post('/createNewAuthor', [AuthorController::class, 'createNewAuthor']);
+
+/* Tags */
+Route::get('/tags', [TagController::class, 'all']);
+Route::get('/getTagById', [TagController::class, 'getTagById']);
+Route::post('/createNewTag', [TagController::class, 'createNewTag']);
