@@ -12,10 +12,10 @@ class Author extends Model
 
     protected $fillable = [
         'name',
-        'tag',
+        'tag_id',
     ];
 
-    public function tag(): BelongsTo
+    public function tag_id(): BelongsTo
     {
         return $this->belongsTo(Tag::class);
     }

@@ -13,19 +13,19 @@ class AuthorSeeder extends Seeder
         $authors = array(
             array(
                 'name' => 'Henriette Jacobs',
-                'tag' => '4',
+                'tag_id' => '4',
             ),
             array(
                 'name' => 'Hergé',
-                'tag' => '5',
+                'tag_id' => '5',
             ),
             array(
                 'name' => 'Stephen Hawking',
-                'tag' => '1',
+                'tag_id' => '1',
             ),
             array(
                 'name' => 'Robert T. Kiyosaki',
-                'tag' => '11',
+                'tag_id' => '11',
             ),
         );
 
@@ -33,7 +33,7 @@ class AuthorSeeder extends Seeder
         {
             DB::table('authors')->insert([
                 'name' => $author['name'],
-                'tag' => $author['tag'],
+                'tag_id' => $author['tag_id'],
             ]);
         }
     }

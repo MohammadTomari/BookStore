@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('author')->constrained('authors');
+            $table->foreignId('author_id')->constrained('authors');
             $table->decimal('price', 9, 3);
             $table->integer('year');
-            $table->foreignId('tag')->constrained('tags');
+            $table->foreignId('tag_id')->constrained('tags');
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('tag')->constrained('tags');
+            $table->foreignId('tag_id')->constrained('tags');
             $table->timestamps();
         });
     }

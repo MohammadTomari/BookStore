@@ -12,18 +12,18 @@ class Book extends Model
 
     protected $fillable = [
         'title',
-        'author',
+        'author_id',
         'price',
         'year',
-        'tag',
+        'tag_id',
     ];
 
-    public function tag(): BelongsTo
+    public function tag_id(): BelongsTo
     {
         return $this->belongsTo(Tag::class);
     }
 
-    public function author(): BelongsTo
+    public function author_id(): BelongsTo
     {
         return $this->belongsTo(Author::class);
     }
