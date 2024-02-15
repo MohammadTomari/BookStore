@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('author')->constrained('authors');
-            $table->integer('price');
+            $table->decimal('price', 9, 3);
             $table->integer('year');
             $table->foreignId('tag')->constrained('tags');
             $table->timestamps();
