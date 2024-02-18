@@ -9,16 +9,23 @@ use App\Http\Requests\TagRequest;
 
 class TagController extends Controller
 {
+    protected $model;
+
+    public function __construct(Tag $tag)
+    {
+        $this->model = $tag;
+    }
+
     public function all(Request $request)
     {
         return response([
-            'data' => $tags = Tag::all(),
+            'data' => $this->model->all(),
         ]);
     }
 
     public function getTagById(Request $request)
     {
-        $tag = Tag::find($request->id);
+        $tag = $this->model->find($request->id);
 
         if ($tag) {
             return response([
@@ -35,7 +42,7 @@ class TagController extends Controller
 
     public function createNewTag(TagRequest $request)
     {
-        $tag = Tag::create([
+        $this->model->create([
             'name' => $request->name,
         ]);
 

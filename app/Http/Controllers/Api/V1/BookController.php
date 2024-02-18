@@ -11,14 +11,20 @@ use App\Http\Requests\BookUpdateRequest;
 
 class BookController extends Controller
 {
+    protected $model;
+
+    public function __construct(Book $book)
+    {
+        $this->model = $book;
+    }
+
     public function all(Request $request)
     {
-        if ($request->tag != "")
-        {
-            $books = Book::where('tag', $request->tag)->get();
+        if ($request->tag != "") {
+            $books = $this->model->where('tag_id', $request->tag)->get();
             return $books;
         } else {
-            $books = Book::all();
+            $books = $this->model->all();
         }
 
         return response([
@@ -28,7 +34,7 @@ class BookController extends Controller
 
     public function getBookById(Request $request)
     {
-        $book = Book::find($request->id);
+        $book = $this->model->find($request->id);
 
         if ($book) {
             return response([
@@ -45,12 +51,12 @@ class BookController extends Controller
 
     public function create(BookRequest $request) : JsonResponse
     {
-        $book = Book::create([
+        $book = $this->model->create([
             'title' => $request->title,
-            'author' => $request->author,
+            'author_id' => $request->author_id,
             'price' => $request->price,
             'year' => $request->year,
-            'tag' => $request->tag,
+            'tag_id' => $request->tag_id,
         ]);
 
         return response()->json([
@@ -72,7 +78,7 @@ class BookController extends Controller
 
         if ($request->author != '') {
             $book->update([
-                'author' => $request->author,
+                'author_id' => $request->author,
             ]);
         }
 
@@ -86,7 +92,7 @@ class BookController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => "Book No. '$request->id' updated successfully!",
-                'details' => $request->all(),
+                'details' => $book,
             ]);
         } else {
             return response()->json([

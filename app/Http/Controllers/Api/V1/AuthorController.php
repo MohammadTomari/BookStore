@@ -9,13 +9,20 @@ use App\Http\Requests\AuthorRequest;
 
 class AuthorController extends Controller
 {
+    protected $model;
+
+    public function __construct(Author $author)
+    {
+        $this->model = $author;
+    }
+
     public function all(Request $request)
     {
-        if ($request->tag != "") {
-            $authors = Author::where('tag', $request->tag)->get();
+        if ($request->tag_id != "") {
+            $authors = $this->model->where('tag_id', $request->tag_id)->get();
             return $authors;
         } else {
-            $authors = Author::all();
+            $authors = $this->model->all();
         }
 
         return response([
@@ -25,7 +32,7 @@ class AuthorController extends Controller
 
     public function getAuthorById(Request $request)
     {
-        $author = Author::find($request->id);
+        $author = $this->model->find($request->id);
 
         if ($author) {
             return response([
@@ -42,9 +49,9 @@ class AuthorController extends Controller
 
     public function createNewAuthor(AuthorRequest $request)
     {
-        $author = Author::create([
+        $author = $this->model->create([
             'name' => $request->name,
-            'tag' => $request->tag,
+            'tag_id' => $request->tag_id,
         ]);
 
         return response([
