@@ -22,10 +22,10 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'author' => 'required',
+            'author_id' => 'required',
             'price' => 'required',
             'year' => 'required',
-            'tag' => 'required',
+            'tag_id' => 'required',
         ];
     }
 
@@ -42,10 +42,10 @@ class BookRequest extends FormRequest
     {
         return [
             'title.required' => 'Title is required',
-            'author.required' => 'Author is required',
+            'author_id.required' => 'Author ID is required',
             'price.required' => 'Price is required',
             'year.required' => 'Year is required',
-            'tag.required' => 'Tag is required',
+            'tag_id.required' => 'Tag is required',
         ];
     }
 }

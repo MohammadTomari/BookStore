@@ -22,7 +22,7 @@ class AuthorRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'tag' => 'required',
+            'tag_id' => 'required',
         ];
     }
 
@@ -39,7 +39,7 @@ class AuthorRequest extends FormRequest
     {
         return [
             'name.required' => 'Name is required',
-            'tag.required' => 'Tag is required',
+            'tag_id.required' => 'Tag is required',
         ];
     }
 }

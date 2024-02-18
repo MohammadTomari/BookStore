@@ -22,7 +22,7 @@ class BookUpdateRequest extends FormRequest
     {
         return [
             'title' => 'max:255',
-            'author' => 'max:25',
+            'author_id' => 'max:25',
             'year' => 'max:4',
         ];
     }
@@ -40,7 +40,7 @@ class BookUpdateRequest extends FormRequest
     {
         return [
             'title.max' => 'Title is too long',
-            'author.max' => 'Author is too long',
+            'author_id.max' => 'Author is too long',
             'year.max' => 'Year is too long',
         ];
     }
